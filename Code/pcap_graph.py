@@ -61,4 +61,10 @@ def plot_tls_transactions(tls_transactions):
 # Enter pcap file datapath here
 pcap_file = 'PCAPdroid_22_Aug_22_37_04.pcap'
 tls_transactions = extract_tls_sni(pcap_file)
+
+# Debugging: Print the extracted transactions
+print("Extracted TLS/SNI Transactions:")
+for transaction in tls_transactions:
+    print(transaction)
+
 plot_tls_transactions(tls_transactions)
