@@ -58,7 +58,7 @@ def plot_tls_transactions(tls_transactions):
     plt.tight_layout()
     plt.show()
 
-# Usage example
+# Enter pcap file datapath here
 pcap_file = 'PCAPdroid_22_Aug_22_37_04.pcap'
 tls_transactions = extract_tls_sni(pcap_file)
 plot_tls_transactions(tls_transactions)
