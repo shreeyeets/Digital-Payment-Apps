@@ -1,97 +1,6 @@
-import dpkt
-import socket
-from dpkt.compat import compat_ord
-import datetime
-import matplotlib.pyplot as plt
-
-def parse_tls_record(data):
-    if len(data) < 5:
-        return None, None, "TLS record too short"
-    
-    record_type = data[0]
-    version = int.from_bytes(data[1:3], 'big')
-    length = int.from_bytes(data[3:5], 'big')
-    
-    if len(data) < length + 5:
-        return None, None, f"TLS record incomplete. Expected {length + 5} bytes, got {len(data)}"
-    
-    record_data = data[5:5+length]
-    return record_type, record_data, None
-
-def parse_tls_handshake(data):
-    if len(data) < 4:
-        return None, None, "Handshake message too short"
-    
-    handshake_type = data[0]
-    length = int.from_bytes(data[1:4], 'big')
-    
-    if len(data) < length + 4:
-        return None, None, f"Handshake message incomplete. Expected {length + 4} bytes, got {len(data)}"
-    
-    handshake_data = data[4:4+length]
-    return handshake_type, handshake_data, None
-
-def parse_client_hello(data):
-    if len(data) < 34:
-        return None, "ClientHello too short"
-    
-    client_version = int.from_bytes(data[:2], 'big')
-    random = data[2:34]
-    session_id_length = data[34]
-    
-    offset = 35 + session_id_length
-    if len(data) < offset + 2:
-        return None, "ClientHello incomplete: can't read cipher suites length"
-    
-    cipher_suites_length = int.from_bytes(data[offset:offset+2], 'big')
-    offset += 2 + cipher_suites_length
-    
-    if len(data) < offset + 1:
-        return None, "ClientHello incomplete: can't read compression methods length"
-    
-    compression_methods_length = data[offset]
-    offset += 1 + compression_methods_length
-    
-    if len(data) < offset + 2:
-        return None, "ClientHello incomplete: can't read extensions length"
-    
-    extensions_length = int.from_bytes(data[offset:offset+2], 'big')
-    offset += 2
-    
-    if len(data) < offset + extensions_length:
-        return None, "ClientHello incomplete: extensions data incomplete"
-    
-    extensions_data = data[offset:offset+extensions_length]
-    return extensions_data, None
-
-def parse_tls_extension(data):
-    sni = None
-    extensions_seen = []
-    while data:
-        if len(data) < 4:
-            break
-        ext_type = int.from_bytes(data[:2], 'big')
-        ext_len = int.from_bytes(data[2:4], 'big')
-        extensions_seen.append(ext_type)
-        
-        if ext_type == 0 and len(data) >= ext_len + 4:  # Server Name Indication
-            sni_data = data[4:4+ext_len]
-            if len(sni_data) > 2:
-                sni_list_len = int.from_bytes(sni_data[:2], 'big')
-                if len(sni_data) >= sni_list_len + 2:
-                    name_data = sni_data[2:2+sni_list_len]
-                    if name_data and name_data[0] == 0:  # host_name
-                        name_len = int.from_bytes(name_data[1:3], 'big')
-                        if len(name_data) >= name_len + 3:
-                            sni = name_data[3:3+name_len].decode('utf-8', errors='ignore')
-        
-        data = data[4+ext_len:]
-    
-    return sni, extensions_seen
-
 def analyze_pcap(file_path):
     sni_list = []
-    timestamps = []
+    sni_timestamp_list = []
     packet_count = 0
     ip_count = 0
     tcp_count = 0
@@ -137,8 +46,7 @@ def analyze_pcap(file_path):
                                     
                                     sni, extensions_seen = parse_tls_extension(extensions_data)
                                     if sni:
-                                        sni_list.append(sni)
-                                        timestamps.append(datetime.datetime.fromtimestamp(timestamp))
+                                        sni_timestamp_list.append((sni, datetime.datetime.fromtimestamp(timestamp)))
                                     elif packet_count <= 5:
                                         print(f"ClientHello found in packet {packet_count}, but no SNI extracted")
                                         print(f"Extensions seen: {extensions_seen}")
@@ -151,39 +59,18 @@ def analyze_pcap(file_path):
                     print(f"Error processing packet {packet_count}: {str(e)}")
                     print(f"Packet data starts with: {buf[:50].hex()}")
 
+    # Sort SNI list by timestamp
+    sni_timestamp_list.sort(key=lambda x: x[1])
+    
+    # Separate sorted SNI and timestamps
+    sorted_sni_list = [sni for sni, _ in sni_timestamp_list]
+    sorted_timestamps = [timestamp for _, timestamp in sni_timestamp_list]
+
     print(f"Total packets processed: {packet_count}")
     print(f"IP packets found: {ip_count}")
     print(f"TCP packets found: {tcp_count}")
     print(f"Possible TLS packets (port 443): {possible_tls_count}")
     print(f"TLS Handshakes found: {tls_handshake_count}")
     print(f"ClientHello messages found: {client_hello_count}")
-    print(f"SNIs extracted: {len(sni_list)}")
-    return sni_list, timestamps
-
-def plot_transactions(timestamps):
-    if not timestamps:
-        print("No timestamps to plot. The graph will be empty.")
-        return
-
-    plt.figure(figsize=(12, 6))
-    plt.plot(timestamps, range(len(timestamps)), marker='o')
-    plt.xlabel('Time')
-    plt.ylabel('Transaction Count')
-    plt.title('TLS Transactions Over Time')
-    plt.grid(True)
-    plt.tight_layout()
-    plt.show()
-
-def main(pcap_file):
-    sni_list, timestamps = analyze_pcap(pcap_file)
-    
-    print("\nSNI found:")
-    for sni in set(sni_list):
-        print(f"- {sni}")
-    
-    print(f"\nTotal TLS transactions: {len(timestamps)}")
-    plot_transactions(timestamps)
-
-if __name__ == "__main__":
-    pcap_file = "path/to/your/pcap/file.pcap"
-    main(pcap_file)
+    print(f"SNIs extracted: {len(sorted_sni_list)}")
+    return sorted_sni_list, sorted_timestamps
