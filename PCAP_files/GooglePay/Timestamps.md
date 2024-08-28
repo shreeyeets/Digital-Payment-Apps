@@ -1,65 +1,35 @@
-# Timestamps for PayTM Transactions with SNI
+# Timestamps for Google Pay Transactions with SNI
 
 
-## PayTM_1.pcap :-
+## GPay_1.pcap :-
 
 
 ### Timestamps:-
 
 
-App opened:- 16:19:44
+App opened:- 14:02:11
 
-Transaction Initiated:- 16:20:39
+Transaction Initiated:- 14:02:52
 
-Transaction Completed:- 16:20:42
+Transaction Completed:- 14:03:00
 
 
 ### SNI with traffic during transaction window:-
 
-kyc.paytmbank.com
-
-sig.paytm.com
-
-paytm.com
-
-digitalapiproxy.paytm.com
-
-securegw-online.paytm.in
-
-media-amazon.com
 
 
-## PayTM_1fail.pcap
+
+## GPay_2.pcap
 
 
 ### Timestamps:-
 
 
-App opened:- 16:25:46
+App opened:- 14:04:05
 
-Transaction Initiated:- 16:26:41
+Transaction Initiated:- 14:04:35
 
-Transaction Failed:- 16:26:43
-
-
-### SNI with traffic during transaction window:-
-
-securegw-online.paytm.in
-
-digitalapiproxy.paytm.com
-
-
-## PayTM_2.pcap
-
-
-### Timestamps:-
-
-
-App opened:- 16:23:13
-
-Transaction Initiated:- 16:26:58
-
-Transaction Failed:- 16:24:01
+Transaction Failed:- 14:04:39
 
 
 ### SNI with traffic during transaction window:-
@@ -73,17 +43,17 @@ digitalapiproxy.paytm.com
 tvybx4-launches.appsflyersdk.com
 
 
-## PayTM_3.pcap
+## GPay_3.pcap
 
 
 ### Timestamps:-
 
 
-App opened:- 16:29:24
+App opened:- 14:05:37
 
-Transaction Initiated:- 16:30:30
+Transaction Initiated:- 14:06:09
 
-Transaction Failed:- 16:30:33
+Transaction Failed:- 14:06:11
 
 
 ### SNI with traffic during transaction window:-
