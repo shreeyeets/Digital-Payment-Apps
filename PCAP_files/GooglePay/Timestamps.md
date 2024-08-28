@@ -17,6 +17,11 @@ Transaction Completed:- 14:03:00
 ### SNI with traffic during transaction window:-
 
 
+paymentsincentives-pa.googleapis.com
+
+firebaselogging.googleapis.com
+
+india-paisa-pa.googleapis.com
 
 
 ## GPay_2.pcap
@@ -34,13 +39,14 @@ Transaction Completed:- 14:04:39
 
 ### SNI with traffic during transaction window:-
 
-kyc.paytmbank.com
 
-securegw-online.paytm.in
+firebaseinstallations.googleapis.com
 
-digitalapiproxy.paytm.com
+paisafs-pa.googleapis.com
 
-tvybx4-launches.appsflyersdk.com
+paymentsincentives-pa.googleapis.com
+
+india-paisa-pa.googleapis.com
 
 
 ## GPay_3.pcap
@@ -58,4 +64,11 @@ Transaction Completed:- 14:06:11
 
 ### SNI with traffic during transaction window:-
 
-digitalapiproxy.paytm.com
+
+paymentsincentives-pa.googleapis.com
+
+india-paisa-pa.googleapis.com
+
+firebaseinstallations.googleapis.com
+
+media.fdel29-1.fna.whatsapp.net
