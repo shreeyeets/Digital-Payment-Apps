@@ -26,6 +26,8 @@ digitalapiproxy.paytm.com
 
 securegw-online.paytm.in
 
+media-amazon.com
+
 
 ## PayTM_1fail.pcap
 
