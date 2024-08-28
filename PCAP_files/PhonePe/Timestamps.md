@@ -16,17 +16,16 @@ Transaction Completed:- 14:10:28
 
 ### SNI with traffic during transaction window:-
 
-kyc.paytmbank.com
 
-sig.paytm.com
+apicp2.phonepe.com
 
-paytm.com
+docs.phonepe.com
 
-digitalapiproxy.paytm.com
+inapps.appsflyer.com
 
-securegw-online.paytm.in
+safebrowsing.googleapis.com
 
-media-amazon.com
+pubads.g.doubleclick.net
 
 
 ## PhonePe_2.pcap
@@ -44,14 +43,12 @@ Transaction Completed:- 14:11:17
 
 ### SNI with traffic during transaction window:-
 
-kyc.paytmbank.com
 
-securegw-online.paytm.in
+ads.phonepe.com
 
-digitalapiproxy.paytm.com
+apicp2.phonepe.com
 
-tvybx4-launches.appsflyersdk.com
-
+inapps.appsflyer.com
 
 
 ## PhonePe_fail.pcap
@@ -69,7 +66,6 @@ Transaction Failed:- 14:12:08
 
 ### SNI with traffic during transaction window:-
 
-securegw-online.paytm.in
+img.phonepe.com
 
-digitalapiproxy.paytm.com
 
