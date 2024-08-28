@@ -29,7 +29,7 @@ App opened:- 14:04:05
 
 Transaction Initiated:- 14:04:35
 
-Transaction Failed:- 14:04:39
+Transaction Completed:- 14:04:39
 
 
 ### SNI with traffic during transaction window:-
@@ -53,7 +53,7 @@ App opened:- 14:05:37
 
 Transaction Initiated:- 14:06:09
 
-Transaction Failed:- 14:06:11
+Transaction Completed:- 14:06:11
 
 
 ### SNI with traffic during transaction window:-
