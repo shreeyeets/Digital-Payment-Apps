@@ -6,7 +6,6 @@
 
 ### Timestamps:-
 
-
 App opened:- 16:19:44
 
 Transaction Initiated:- 16:20:39
@@ -14,7 +13,7 @@ Transaction Initiated:- 16:20:39
 Transaction Completed:- 16:20:42
 
 
-### SNI with traffic during transaction window:-
+### SNI with traffic during transaction window:
 
 kyc.paytmbank.com
 
@@ -34,7 +33,6 @@ media-amazon.com
 
 ### Timestamps:-
 
-
 App opened:- 16:25:46
 
 Transaction Initiated:- 16:26:41
@@ -53,7 +51,6 @@ digitalapiproxy.paytm.com
 
 
 ### Timestamps:-
-
 
 App opened:- 16:23:13
 
@@ -77,7 +74,6 @@ tvybx4-launches.appsflyersdk.com
 
 
 ### Timestamps:-
-
 
 App opened:- 16:29:24
 
