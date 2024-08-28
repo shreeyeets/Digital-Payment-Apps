@@ -185,5 +185,5 @@ def main(pcap_file):
     plot_transactions(timestamps)
 
 if __name__ == "__main__":
-    pcap_file = "PayTM_1.pcap"
+    pcap_file = "path/to/your/pcap/file.pcap"
     main(pcap_file)
