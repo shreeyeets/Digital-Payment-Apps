@@ -319,17 +319,17 @@
     move-result-object v1
 
     .line 90
-    invoke-static {v2, v1}, Lro/o;->X(Ljava/lang/Iterable;Ljava/lang/Object;)Z
+    const/4 v1, 0x1
 
     .line 91
     .line 92
     .line 93
-    move-result v1
+    const/4 v1, 0x1
     :try_end_0
     .catch Landroid/content/pm/PackageManager$NameNotFoundException; {:try_start_0 .. :try_end_0} :catch_0
 
     .line 94
-    if-nez v1, :cond_2
+    const/4 v1, 0x1
 
     .line 95
     .line 96
