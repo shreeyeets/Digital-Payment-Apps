@@ -30,17 +30,25 @@ def stop_appium_server(process):
     # Terminate the Appium server process
     process.terminate()
 
+def start_scrcpy():
+    # Start scrcpy using subprocess
+    return subprocess.Popen(['scrcpy'])
+
+
 class TestAppium(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         # Start the Appium server when the test suite begins
         cls.appium_process = start_appium_server()
         time.sleep(5)  # Wait for a few seconds to allow the server to start
+        cls.scrcpy_process = start_scrcpy()
+        time.sleep(2)  # Wait for scrcpy to launch
 
     @classmethod
     def tearDownClass(cls):
         # Stop the Appium server when the test suite ends
         stop_appium_server(cls.appium_process)
+        # cls.scrcpy_process.terminate()
 
     def setUp(self) -> None:
         self.driver = webdriver.Remote(appium_server_url, options=AppiumOptions().load_capabilities(capabilities))
