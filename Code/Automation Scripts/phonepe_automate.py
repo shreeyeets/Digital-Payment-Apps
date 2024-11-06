@@ -96,11 +96,23 @@ class TestAppium(unittest.TestCase):
 
         # Step 8: Enter UPI PIN
         self.enter_upi_pin()
+        start_time = time.time()
 
         # Log the timestamp when the payment is completed (adjust based on your app's behavior)
         # This can be the confirmation message or any identifiable element that indicates completion
         # self.wait.until(EC.presence_of_element_located((AppiumBy.XPATH, '//android.widget.TextView[@text="Payment Successful"]')))
         # print("Payment completed at:", time.strftime('%Y-%m-%d %H:%M:%S'))
+
+        # Step 9: Confirm transaction completion by waiting for the "Payment Successful" message
+        try:
+            # Replace the XPath with the element identifier shown upon payment completion
+            confirmation_message = self.wait.until(EC.presence_of_element_located((AppiumBy.XPATH, '(//android.widget.LinearLayout[@resource-id="com.phonepe.app:id/payment_container"])[2]')))
+            end_time = time.time()
+            duration = end_time - start_time
+            print("Payment completed at:", time.strftime('%Y-%m-%d %H:%M:%S'))
+            print("Time taken between UPI PIN entry and confirmation:", duration, "seconds")
+        except Exception as e:
+            print("Payment confirmation not found. Error:", str(e))
 
     def enter_upi_pin(self):
         # Entering UPI PIN with known coordinates for faster execution
