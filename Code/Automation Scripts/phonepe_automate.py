@@ -89,12 +89,18 @@ class TestAppium(unittest.TestCase):
         # Step 7: Locate and click the 'Pay' button (adjust the identifier if needed)
         try:
             self.driver.tap([(944, 1343)], 100)  # Tap the PAY button using coordinates 967, 2228
+            print("UPI Payment Gateway opened at:", time.strftime('%Y-%m-%d %H:%M:%S'))
         except Exception as e:
             print("Error tapping PAY button:", str(e))
             return
 
         # Step 8: Enter UPI PIN
         self.enter_upi_pin()
+
+        # Log the timestamp when the payment is completed (adjust based on your app's behavior)
+        # This can be the confirmation message or any identifiable element that indicates completion
+        # self.wait.until(EC.presence_of_element_located((AppiumBy.XPATH, '//android.widget.TextView[@text="Payment Successful"]')))
+        # print("Payment completed at:", time.strftime('%Y-%m-%d %H:%M:%S'))
 
     def enter_upi_pin(self):
         # Entering UPI PIN with known coordinates for faster execution
