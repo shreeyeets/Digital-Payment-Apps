@@ -99,7 +99,7 @@ class TestAppium(unittest.TestCase):
         #amount_input.send_keys("1 3 0 4 0 1")  # Enter the amount
         self.enter_upi_pin()
         start_time = time.time()
-        confirmation_message = self.wait.until(EC.presence_of_element_located((AppiumBy.XPATH, '//android.widget.FrameLayout[@resource-id="com.mobikwik_new:id/header_container"]/android.widget.LinearLayout')))
+        confirmation_message = self.wait.until(EC.presence_of_element_located((AppiumBy.XPATH, '//android.widget.FrameLayout[@resource-id="com.mobikwik_new:id/header_container"]/android.widget.LinearLayout')),15)
         end_time = time.time()
         duration = end_time - start_time
 
