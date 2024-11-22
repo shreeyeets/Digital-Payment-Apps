@@ -50,13 +50,13 @@ PhonePe
 
 Mobikwik default - Waited for 3516 ms so far
 
-10 -
+10 - 3.5 
 20 -
-50 -
+50 - 3997 ms 
 75 -
 100 - 3.863744020462036
-150 -
-200 -
+150 - 5.606528043746948
+200 - 6.3948047161102295 seconds
 300 - 6.227899551391602 (Waited for 3716 ms so far)
 500 - 7.296844720840454 seconds (Waiting up to 5000 ms for condition > 4535) Also took 5 to 20 sec to get to upi pin page
 750 - 7.066395282745361 seconds (5000 ms so far for condition > 4992 )
