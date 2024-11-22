@@ -94,14 +94,23 @@ class TestAppium(unittest.TestCase):
             return
 
         # Step 7: Enter UPI PIN
-        time.sleep(10)
+        time.sleep(8)
         #amount_input = self.wait.until(EC.presence_of_element_located((AppiumBy.XPATH, '//android.widget.EditText[@resource-id="com.mobikwik_new:id/form_item_input"]')))
         #amount_input.send_keys("1 3 0 4 0 1")  # Enter the amount
         self.enter_upi_pin()
         start_time = time.time()
-        confirmation_message = self.wait.until(EC.presence_of_element_located((AppiumBy.XPATH, '//android.widget.FrameLayout[@resource-id="com.mobikwik_new:id/header_container"]/android.widget.LinearLayout')),15)
-        end_time = time.time()
-        duration = end_time - start_time
+        
+        # Step 9: Confirm transaction completion by waiting for the "Payment Successful" message
+        try:
+            confirmation_message = WebDriverWait(self.driver,15).until(EC.presence_of_element_located((AppiumBy.XPATH, '(//android.widget.FrameLayout[@resource-id="com.mobikwik_new:id/header_container"]/android.widget.LinearLayout)[1]')))
+            print("Confirmation Message received")
+            end_time = time.time()
+            duration = end_time - start_time
+            print("Payment completed at:", time.strftime('%Y-%m-%d %H:%M:%S'))
+            print("Time taken between UPI PIN entry and confirmation:", duration, "seconds")
+        except Exception as e:
+            print("Payment confirmation not found. Error:", str(e))
+
 
     def enter_upi_pin(self):
         self.driver.tap([(239, 2197)], 50) #1
