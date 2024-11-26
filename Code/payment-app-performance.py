@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 
-# Bandwidth Data
+# Bandwidth Data (Bandwidth in kbps, Transaction Time in seconds)
 phonepe_bandwidth = [
     (100, 4.222),
     (200, 2.377),
@@ -11,7 +11,7 @@ phonepe_bandwidth = [
 ]
 
 mobikwik_bandwidth = [
-    (100, 20.623),
+    (100, 20.623),  # Highest time for lowest bandwidth
     (200, 10.244),
     (300, 6.270),
     (400, 4.370),
@@ -21,7 +21,7 @@ mobikwik_bandwidth = [
     (1000, 3.281)
 ]
 
-# Latency Data
+# Latency Data (Latency in ms, Transaction Time in seconds)
 phonepe_latency = [
     (10, 1.330),
     (100, 1.711),
@@ -52,43 +52,44 @@ mobikwik_latency = [
 # Create a figure with two subplots
 plt.figure(figsize=(12, 5))
 
-# Bandwidth subplot (Bandwidth on x-axis)
+# Bandwidth subplot
 plt.subplot(1, 2, 1)
-plt.plot([x[1] for x in phonepe_bandwidth], [x[0] for x in phonepe_bandwidth], 'o-', label='PhonePe')
-plt.plot([x[1] for x in mobikwik_bandwidth], [x[0] for x in mobikwik_bandwidth], 's-', label='Mobikwik')
+plt.plot([x[0] for x in phonepe_bandwidth], [x[1] for x in phonepe_bandwidth], 'o-', label='PhonePe')
+plt.plot([x[0] for x in mobikwik_bandwidth], [x[1] for x in mobikwik_bandwidth], 's-', label='Mobikwik')
 plt.title('Transaction Time vs Bandwidth')
-plt.ylabel('Transaction Time (ms)')
-plt.xlabel('Bandwidth (Mbps)')
+plt.xlabel('Bandwidth (kbps)')
+plt.ylabel('Transaction Time (seconds)')
 plt.legend()
 plt.grid(True)
 
-# Latency subplot (Latency on x-axis)
+# Latency subplot
 plt.subplot(1, 2, 2)
-plt.plot([x[1] for x in phonepe_latency], [x[0] for x in phonepe_latency], 'o-', label='PhonePe')
-plt.plot([x[1] for x in mobikwik_latency], [x[0] for x in mobikwik_latency], 's-', label='Mobikwik')
+plt.plot([x[0] for x in phonepe_latency], [x[1] for x in phonepe_latency], 'o-', label='PhonePe')
+plt.plot([x[0] for x in mobikwik_latency], [x[1] for x in mobikwik_latency], 's-', label='Mobikwik')
 plt.title('Transaction Time vs Latency')
-plt.ylabel('Transaction Time (ms)')
 plt.xlabel('Latency (ms)')
-plt.xscale('log')
+plt.ylabel('Transaction Time (seconds)')
 plt.legend()
 plt.grid(True)
 
 plt.tight_layout()
 plt.show()
 
-# Print out some basic statistics
-print("PhonePe Bandwidth Stats:")
-print(f"Min Bandwidth: {min(x[1] for x in phonepe_bandwidth):.3f} Mbps")
-print(f"Max Bandwidth: {max(x[1] for x in phonepe_bandwidth):.3f} Mbps")
+# Print detailed statistics
+print("Bandwidth Performance:")
+print("\nPhonePe:")
+for bw, time in phonepe_bandwidth:
+    print(f"Bandwidth {bw} kbps: {time:.3f} seconds")
 
-print("\nMobikwik Bandwidth Stats:")
-print(f"Min Bandwidth: {min(x[1] for x in mobikwik_bandwidth):.3f} Mbps")
-print(f"Max Bandwidth: {max(x[1] for x in mobikwik_bandwidth):.3f} Mbps")
+print("\nMobikwik:")
+for bw, time in mobikwik_bandwidth:
+    print(f"Bandwidth {bw} kbps: {time:.3f} seconds")
 
-print("\nPhonePe Latency Stats:")
-print(f"Min Latency: {min(x[1] for x in phonepe_latency):.3f} ms")
-print(f"Max Latency: {max(x[1] for x in phonepe_latency):.3f} ms")
+print("\nLatency Performance:")
+print("\nPhonePe:")
+for lat, time in phonepe_latency:
+    print(f"Latency {lat} ms: {time:.3f} seconds")
 
-print("\nMobikwik Latency Stats:")
-print(f"Min Latency: {min(x[1] for x in mobikwik_latency):.3f} ms")
-print(f"Max Latency: {max(x[1] for x in mobikwik_latency):.3f} ms")
+print("\nMobikwik:")
+for lat, time in mobikwik_latency:
+    print(f"Latency {lat} ms: {time:.3f} seconds")
