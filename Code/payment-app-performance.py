@@ -52,26 +52,43 @@ mobikwik_latency = [
 # Create a figure with two subplots
 plt.figure(figsize=(12, 5))
 
-# Bandwidth subplot
+# Bandwidth subplot (Bandwidth on x-axis)
 plt.subplot(1, 2, 1)
-plt.plot([x[0] for x in phonepe_bandwidth], [x[1] for x in phonepe_bandwidth], 'o-', label='PhonePe')
-plt.plot([x[0] for x in mobikwik_bandwidth], [x[1] for x in mobikwik_bandwidth], 's-', label='Mobikwik')
-plt.title('Bandwidth vs Transaction Time')
-plt.xlabel('Transaction Time (ms)')
-plt.ylabel('Bandwidth (Mbps)')
+plt.plot([x[1] for x in phonepe_bandwidth], [x[0] for x in phonepe_bandwidth], 'o-', label='PhonePe')
+plt.plot([x[1] for x in mobikwik_bandwidth], [x[0] for x in mobikwik_bandwidth], 's-', label='Mobikwik')
+plt.title('Transaction Time vs Bandwidth')
+plt.ylabel('Transaction Time (ms)')
+plt.xlabel('Bandwidth (Mbps)')
 plt.legend()
 plt.grid(True)
 
-# Latency subplot
+# Latency subplot (Latency on x-axis)
 plt.subplot(1, 2, 2)
-plt.plot([x[0] for x in phonepe_latency], [x[1] for x in phonepe_latency], 'o-', label='PhonePe')
-plt.plot([x[0] for x in mobikwik_latency], [x[1] for x in mobikwik_latency], 's-', label='Mobikwik')
-plt.title('Latency vs Transaction Time')
-plt.xlabel('Transaction Time (ms)')
-plt.ylabel('Latency (ms)')
+plt.plot([x[1] for x in phonepe_latency], [x[0] for x in phonepe_latency], 'o-', label='PhonePe')
+plt.plot([x[1] for x in mobikwik_latency], [x[0] for x in mobikwik_latency], 's-', label='Mobikwik')
+plt.title('Transaction Time vs Latency')
+plt.ylabel('Transaction Time (ms)')
+plt.xlabel('Latency (ms)')
 plt.xscale('log')
 plt.legend()
 plt.grid(True)
 
 plt.tight_layout()
 plt.show()
+
+# Print out some basic statistics
+print("PhonePe Bandwidth Stats:")
+print(f"Min Bandwidth: {min(x[1] for x in phonepe_bandwidth):.3f} Mbps")
+print(f"Max Bandwidth: {max(x[1] for x in phonepe_bandwidth):.3f} Mbps")
+
+print("\nMobikwik Bandwidth Stats:")
+print(f"Min Bandwidth: {min(x[1] for x in mobikwik_bandwidth):.3f} Mbps")
+print(f"Max Bandwidth: {max(x[1] for x in mobikwik_bandwidth):.3f} Mbps")
+
+print("\nPhonePe Latency Stats:")
+print(f"Min Latency: {min(x[1] for x in phonepe_latency):.3f} ms")
+print(f"Max Latency: {max(x[1] for x in phonepe_latency):.3f} ms")
+
+print("\nMobikwik Latency Stats:")
+print(f"Min Latency: {min(x[1] for x in mobikwik_latency):.3f} ms")
+print(f"Max Latency: {max(x[1] for x in mobikwik_latency):.3f} ms")
