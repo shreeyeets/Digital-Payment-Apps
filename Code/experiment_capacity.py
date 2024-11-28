@@ -27,5 +27,3 @@ for tool in tools:
 			cmd = f"ssh root@192.168.1.1 'ash /root/shaper_dpa.sh {k} {fixed_cap}kbit {fixed_cap+2}kbit {iface} {fixed_latency} {pkt_loss_list[0]}'"
 			os.system(cmd)
 
-
-    ## logic to log the metadata 
