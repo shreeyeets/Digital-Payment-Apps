@@ -94,7 +94,7 @@ class TestAppium(unittest.TestCase):
             return
 
         # Step 7: Enter UPI PIN
-        time.sleep(8)
+        time.sleep(8) # This delay exists to bypass the delay cause by poor netwrok conditions cuased by network shaping. Adjust it as required
         #amount_input = self.wait.until(EC.presence_of_element_located((AppiumBy.XPATH, '//android.widget.EditText[@resource-id="com.mobikwik_new:id/form_item_input"]')))
         #amount_input.send_keys("1 3 0 4 0 1")  # Enter the amount
         self.enter_upi_pin()
