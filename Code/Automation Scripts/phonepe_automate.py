@@ -87,12 +87,12 @@ class TestAppium(unittest.TestCase):
         el2 = self.wait.until(EC.presence_of_element_located((AppiumBy.XPATH, '//android.widget.TextView[@resource-id="com.phonepe.app:id/tv_dynamic_hint"]')))
         el2.click()
 
-        # Step 3: Enter the contact name "Tushman"
+        # Step 3: Enter the contact name "XYZ"
         search_input = self.wait.until(EC.presence_of_element_located((AppiumBy.XPATH, '//android.widget.EditText[@text="Search number or name"]')))
-        search_input.send_keys("Tushman")
+        search_input.send_keys("XYZ")
 
         # Step 4: Select the contact from the search results
-        contact_result = self.wait.until(EC.presence_of_element_located((AppiumBy.XPATH, '//android.widget.TextView[@text="Tushman"]')))
+        contact_result = self.wait.until(EC.presence_of_element_located((AppiumBy.XPATH, '//android.widget.TextView[@text="XYZ"]')))
         contact_result.click()
 
         # Step 5: Tap on the coordinates (147, 2208) to open the keyboard
