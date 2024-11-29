@@ -66,12 +66,12 @@ class TestAppium(unittest.TestCase):
         el2 = self.wait.until(EC.presence_of_element_located((AppiumBy.XPATH, '//android.view.ViewGroup[@resource-id="com.mobikwik_new:id/cl_root"]')))
         el2.click()
 
-        # Step 3: Enter the contact name "Shreejeet"
+        # Step 3: Enter the contact name "XYZ"
         search_input = self.wait.until(EC.presence_of_element_located((AppiumBy.XPATH, '//android.widget.EditText[@resource-id="com.mobikwik_new:id/search_edit_text"]')))
-        search_input.send_keys("Shreejeet")
+        search_input.send_keys("XYZ")
 
         # Step 4: Select the contact from the search results
-        contact_result = self.wait.until(EC.presence_of_element_located((AppiumBy.XPATH, '//android.widget.TextView[@resource-id="com.mobikwik_new:id/contact_name" and @text="Shreejeet"]')))
+        contact_result = self.wait.until(EC.presence_of_element_located((AppiumBy.XPATH, '//android.widget.TextView[@resource-id="com.mobikwik_new:id/contact_name" and @text="XYZ"]')))
         contact_result.click()
 
         # Step 5: Click on "To Bank Account"
@@ -113,12 +113,12 @@ class TestAppium(unittest.TestCase):
 
 
     def enter_upi_pin(self):
-        self.driver.tap([(239, 2197)], 50) #1
-        self.driver.tap([(1200, 2197)], 50) #3
-        self.driver.tap([(698, 2853)], 50) #0
-        self.driver.tap([(239, 2375)], 50) #4
-        self.driver.tap([(571, 2853)], 50) #0
-        self.driver.tap([(239, 2197)], 50) #1
+        self.driver.tap([(239, 2197)], 50) #A
+        self.driver.tap([(1200, 2197)], 50) #B
+        self.driver.tap([(698, 2853)], 50) #C
+        self.driver.tap([(239, 2375)], 50) #D
+        self.driver.tap([(571, 2853)], 50) #E
+        self.driver.tap([(239, 2197)], 50) #F
         self.driver.tap([(1203, 2853)], 50) #tick
 
 
