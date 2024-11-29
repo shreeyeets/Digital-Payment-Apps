@@ -57,9 +57,9 @@ class TestAppium(unittest.TestCase):
         time.sleep(1)
         self.driver.tap([(520, 194)], 50)
 
-        # Step 3: Enter the contact name "Tushman"
+        # Step 3: Enter the contact name "XYZ"
         enter_contact = self.wait.until(EC.presence_of_element_located((AppiumBy.XPATH, '//android.widget.EditText')))
-        enter_contact.send_keys("Tushman")
+        enter_contact.send_keys("XYZ")
 
         # Step 4: Select the contact from the search results
         time.wait(2)
@@ -93,12 +93,12 @@ class TestAppium(unittest.TestCase):
 
     def enter_upi_pin(self):
         # Entering UPI PIN with known coordinates for faster execution
-        self.driver.tap([(203, 1975)], 50)  # Replace x1, y1 with actual coordinates for digit '7'
-        self.driver.tap([(914, 1802)], 50)  # Coordinates for digit '6'
-        self.driver.tap([(559, 1646)], 50)  # Coordinates for digit '2'
-        self.driver.tap([(550, 2125)], 50)  # Coordinates for digit '0'
-        self.driver.tap([(914, 1967)], 50)  # Coordinates for digit '9'
-        self.driver.tap([(529, 1802)], 50)  # Coordinates for digit '5'
+        self.driver.tap([(203, 1975)], 50)  # Replace x1, y1 with actual coordinates for digit 'A'
+        self.driver.tap([(914, 1802)], 50)  # Coordinates for digit 'B'
+        self.driver.tap([(559, 1646)], 50)  # Coordinates for digit 'C'
+        self.driver.tap([(550, 2125)], 50)  # Coordinates for digit 'D'
+        self.driver.tap([(914, 1967)], 50)  # Coordinates for digit 'E'
+        self.driver.tap([(529, 1802)], 50)  # Coordinates for digit 'F'
         # Tap the tick button
         self.driver.tap([(911, 2137)], 50)  # Replace with actual tick coordinates
 
